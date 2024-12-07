@@ -1,17 +1,30 @@
-# HW13 Template
+# HW13 Fire Match Interactive System
+This is an extension of my assignment in HW05！
+This project demonstrates an interactive fire match system using p5.js and Arduino. The system simulates a matchstick with an adjustable flame size and color. The flame can be turned on and off via physical buttons, sending serial data between the Arduino and p5.js
 
-Arduino reads a button on pin 2 and a potentiometer on pin A0 and passes those values on to the p5js sketch via a Serial connection.
+# overview
+The system consists of:
 
-The object that is created and sent to p5js looks like this:
+A matchstick simulation in p5.js that visually displays a match and a flame.
+Arduino controls where two buttons are used to turn the flame on and off, sending commands to the p5.js sketch.
+When the flame is turned on, it gradually grows larger and brighter. When the flame is turned off, it gradually shrinks and fades away. The interaction is powered by serial communication between Arduino and p5.js.
 
-```
-data = {
-  A0: { value: integer },
-  D2: {
-    isPressed: boolean,
-    count: integer
-  }
-}
-```
+# Components
+p5.js Sketch
+The p5.js code listens for serial data and updates the flame state accordingly:
 
-In p5js `A0.value` is used to change ellipse size, `D2.isPressed` is used to add new ellipses to an array and `D2.count` is used to change the color of new ellipses.
+ON command: Turns the flame on (grows and brightens).
+OFF command: Turns the flame off (shrinks and fades).
+Key Features:
+
+Serial connection: Reads serial data from Arduino.
+Interactive flame: Changes size and brightness based on serial data.
+Matchstick simulation: Displays a matchstick and flame on the canvas.
+Arduino Code
+The Arduino code reads the state of two physical buttons:
+
+Button 1 (D2)（red）: Sends "ON" to p5.js when pressed (turns the flame on).
+Button 2 (D3)（yellow）: Sends "OFF" to p5.js when pressed (turns the flame off)
+
+
+
